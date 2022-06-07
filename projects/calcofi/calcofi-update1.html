@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>CalCOFI Initial Progress and Goal Definition &#8212; Data Science Capstone 2022</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -72,7 +71,21 @@ const thebe_selector_output = ".output, .cell_output"
                     </script>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -81,9 +94,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -101,14 +115,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../welcome.html">
-   Welcome to Data Science Capstone
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../welcome.html">
+                    Welcome to Data Science Capstone
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Class Logistics
  </span>
@@ -177,6 +192,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../class/progress-update-third-post-guidelines.html">
+     Third post (due Friday 4/29)
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../class/progress-update-posting-instructions.html">
      How to post project updates
     </a>
@@ -186,6 +206,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../class/presentation-guidelines-winter.html">
    Interim presentation guidelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../class/presentation-guidelines-midquarter-spring.html">
+   Mid-quarter presentations
   </a>
  </li>
 </ul>
@@ -215,6 +240,11 @@ const thebe_selector_output = ".output, .cell_output"
      Project Update 2 (3/4/2022)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../allthenticate/update3.html">
+     Project Update 3 (5/2/2022)
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -235,6 +265,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../appfolio/update2.html">
      Creating a Simple Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../appfolio/update3.html">
+     Implementing Hybrid Models and Image Features
     </a>
    </li>
   </ul>
@@ -259,6 +294,11 @@ const thebe_selector_output = ".output, .cell_output"
      Progress Update and Reflection
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="calcofi-update3.html">
+     The Final Stretch
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -281,6 +321,11 @@ const thebe_selector_output = ".output, .cell_output"
      Update 2 - (3/4/22)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../carpedata/update3.html">
+     Update 3 - (4/29/22)
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -296,6 +341,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../ccber/update1.html">
      Update 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ccber/update2.html">
+     Update 2
     </a>
    </li>
   </ul>
@@ -320,6 +370,11 @@ const thebe_selector_output = ".output, .cell_output"
      Update 2
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cits/update3.html">
+     Update 3
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -339,7 +394,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../envent/projectupdate2.html">
-     Concise Project Refresher
+     Update 2: Moving Towards Megapoll Assembly
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../envent/projectupdate3.html">
+     Update 3: Merging Demographics and Exploring Modeling
     </a>
    </li>
   </ul>
@@ -364,6 +424,11 @@ const thebe_selector_output = ".output, .cell_output"
      Update 2
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../eri/update3.html">
+     Update 3
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -384,6 +449,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../evidation_eric/update2.html">
      Evidation Health Project Update 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../evidation_eric/update3.html">
+     Evidation Health Project Update 3
     </a>
    </li>
   </ul>
@@ -408,6 +478,11 @@ const thebe_selector_output = ".output, .cell_output"
      Evidation Update #2 (Julio’s Team)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../evidation_julio/update3.html">
+     Evidation Julio Update 3
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -422,12 +497,17 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../hg_insights/HG_Update1_Feb7.html">
-     hg_insights
+     Update 1
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../hg_insights/update%202-2.html">
      Update 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hg_insights/update%203.html">
+     Update 3
     </a>
    </li>
   </ul>
@@ -450,6 +530,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../nri/update2.html">
      Team Information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nri/update3.html">
+     NRI Group Update 3
     </a>
    </li>
   </ul>
@@ -496,97 +581,207 @@ const thebe_selector_output = ".output, .cell_output"
      Update 2
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../sprague/Sprague_group_update_03.html">
+     Update 3
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/projects/calcofi/calcofi-update1.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io/issues/new?title=Issue%20on%20page%20%2Fprojects/calcofi/calcofi-update1.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io/edit/main/ucsb_ds_capstone_projects_2022/projects/calcofi/calcofi-update1.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io/issues/new?title=Issue%20on%20page%20%2Fprojects/calcofi/calcofi-update1.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io/edit/main/ucsb_ds_capstone_projects_2022/projects/calcofi/calcofi-update1.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/projects/calcofi/calcofi-update1.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#project-overview">
    Project Overview
@@ -609,12 +804,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>CalCOFI Initial Progress and Goal Definition</h1>
@@ -653,13 +847,14 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="calcofi-initial-progress-and-goal-definition">
-<h1>CalCOFI Initial Progress and Goal Definition<a class="headerlink" href="#calcofi-initial-progress-and-goal-definition" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="project-overview">
-<h2>Project Overview<a class="headerlink" href="#project-overview" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="calcofi-initial-progress-and-goal-definition">
+<h1>CalCOFI Initial Progress and Goal Definition<a class="headerlink" href="#calcofi-initial-progress-and-goal-definition" title="Permalink to this headline">#</a></h1>
+<section id="project-overview">
+<h2>Project Overview<a class="headerlink" href="#project-overview" title="Permalink to this headline">#</a></h2>
 <p>For our project we are working with California Cooperative Oceanic Fisheries Investigations (CalCOFI), a research organization studying and protecting the environment off the California Coast. The organization has been collecting data on oceanic properties (involving physical, chemical, and biological data) like temperature, salinity, oxygen, and pH down to a depth of about 500 meters for the past 74 years. CalCOFI measures these properties by conducting cruises out to stations throughout 500 miles of the coastline and 360 miles offshore.</p>
 <p>Observations made by CalCOFI’s data collection program reflect that the dissolved oxygen (hypoxia) and pH levels in the ocean off the coast of California have been varying greatly over the past few decades. It is increasingly recognized that low dissolved oxygen and low pH conditions have detritus effects on marine organisms. These phenomena occur naturally in certain coastal environments and can be applied by the effects of climate change and global warming. Thus, our project is focused on conducting exploratory analysis to characterize the regions of the ocean off the coast of California in which ocean acidification and hypoxia vary to dangerous levels and thus where marine life may be more susceptible to climate change. Our goal is to present our analytical findings through easily digestible visualizations and animations to help policy makers understand where local interventions need to be implemented and what those interventions would need to address.</p>
 <p>Our team is currently working with visualizations in R using leaflet and shiny, and some other support packages like mapbox. These methods will help us visualize the spatio-temporal data that CalCOFI takes, and make variations in oxygen saturation, pH, and other ocean properties easier to capture. We are currently working towards a visualization of the bathymetry of the coast of california, and how oxygen varies with depth in various regions. The end goal would be to create a sort of animation where the change in oxygen over the various seasons throughout the year can be seen on the map. We are essentially creating a 4D map of the California Coastline. The image shown below illustrates what we are trying to go for, with the data overlaid on a map, and the interactive component where we can see the data change over seasons.</p>
@@ -667,9 +862,9 @@ const thebe_selector_output = ".output, .cell_output"
     <img src="Images/OROwind.png" alt="Visualization of 4D geospatial data">
     <figcaption>Visualization of 4D geospatial data. Image obtained from <a href='https://offshorewind.westcoastoceans.org/visualize/#x=-126.30&y=38.43&z=4.787070098064209&logo=true&controls=true&dls%5B%5D=true&dls%5B%5D=0.5&dls%5B%5D=397&basemap=ocean&themes%5Bids%5D%5B%5D=4&tab=active&legends=false&layers=true'> OROWindmap Data Portal</a><figcaption>
 <figure> 
-</div>
-<div class="section" id="data-collection">
-<h2>Data Collection:<a class="headerlink" href="#data-collection" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="data-collection">
+<h2>Data Collection:<a class="headerlink" href="#data-collection" title="Permalink to this headline">#</a></h2>
 <p>CalCOFI is a project that has been runing for a long time, and as a result their data collection methods follow closely with protocol to maintain consistency over the many years the project has been running. Data is taken 4 times a year (once a quarter). A ship takes scientists out to the same set of coordinates every year. At those coordinates, a CTD Rosette (pictured below) is lowered into the water, and at set discrete depths, ocean water samples are taken. Many parameters are measured with the samples taken such as Oxygen concentration, pH, salinity, temperature etc. Because of the size of the dataset, for development purposes we have cut down on the time range we are looking at to the years <strong>2000-2021</strong>.</p>
 <figure>
     <img src="https://wp.calcofi.org/wp/wp-content/uploads/2020/03/1904RL_sta93-50_CTDSurface-1024x770.jpg" alt="CTD Rosette Bottle being used in ocean water">
@@ -679,9 +874,9 @@ const thebe_selector_output = ".output, .cell_output"
     <img src="https://user-images.githubusercontent.com/30590837/149233121-d5e2e83e-b72a-41e5-9e83-00ef40877b43.png" alt="Visual representation of sampling method used by CalCOFI">
     <figcaption>Visual representation of sampling method used by CalCOFI. We are working with the Bottle data samples shown with the dark blue dots.<figcaption>
 <figure>   
-</div>
-<div class="section" id="data-definitions">
-<h2>Data definitions<a class="headerlink" href="#data-definitions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="data-definitions">
+<h2>Data definitions<a class="headerlink" href="#data-definitions" title="Permalink to this headline">#</a></h2>
 <p>We also cut down on the parameters used partly for development purposes, partly because we are only interested in certain parameters as of right now. The table below represents the parameters we use, and what they represent:</p>
 <table class="colwidths-auto table">
 <thead>
@@ -809,12 +1004,12 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="current-goals">
-<h2>Current Goals<a class="headerlink" href="#current-goals" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="current-goals">
+<h2>Current Goals<a class="headerlink" href="#current-goals" title="Permalink to this headline">#</a></h2>
 <p>Our main objective of the project at this point focuses on conducting exploratory analysis through visualization techniques to illustrate hypoxia in the Pacific Ocean off of California’s coast. Some specific goals we are working on include comparing the variability of hypoxia at set depths for each season and viewing the change among average hypoxia levels over time since 2000. Currently, we are implementing packages in R that have static and interactive capabilities such as ggplot and leaflet, to hopefully create an interactive medium that allows viewers to easily look up information from points on a map where the stations travel to collect bottle and cast data.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -838,9 +1033,11 @@ const thebe_selector_output = ".output, .cell_output"
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="description.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -856,24 +1053,28 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By UCSB DS Capstone Class<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By UCSB DS Capstone Class<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

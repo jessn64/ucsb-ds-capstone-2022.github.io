@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Update 2: First Dive into Compression &#8212; Data Science Capstone 2022</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -74,7 +73,21 @@ const thebe_selector_output = ".output, .cell_output"
                     </script>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -83,9 +96,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -103,14 +117,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../welcome.html">
-   Welcome to Data Science Capstone
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../welcome.html">
+                    Welcome to Data Science Capstone
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Class Logistics
  </span>
@@ -179,6 +194,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../class/progress-update-third-post-guidelines.html">
+     Third post (due Friday 4/29)
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../class/progress-update-posting-instructions.html">
      How to post project updates
     </a>
@@ -188,6 +208,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../../class/presentation-guidelines-winter.html">
    Interim presentation guidelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../class/presentation-guidelines-midquarter-spring.html">
+   Mid-quarter presentations
   </a>
  </li>
 </ul>
@@ -217,6 +242,11 @@ const thebe_selector_output = ".output, .cell_output"
      Project Update 2 (3/4/2022)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../allthenticate/update3.html">
+     Project Update 3 (5/2/2022)
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -237,6 +267,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../appfolio/update2.html">
      Creating a Simple Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../appfolio/update3.html">
+     Implementing Hybrid Models and Image Features
     </a>
    </li>
   </ul>
@@ -261,6 +296,11 @@ const thebe_selector_output = ".output, .cell_output"
      Progress Update and Reflection
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../calcofi/calcofi-update3.html">
+     The Final Stretch
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -283,6 +323,11 @@ const thebe_selector_output = ".output, .cell_output"
      Update 2 - (3/4/22)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../carpedata/update3.html">
+     Update 3 - (4/29/22)
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -298,6 +343,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../ccber/update1.html">
      Update 1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ccber/update2.html">
+     Update 2
     </a>
    </li>
   </ul>
@@ -322,6 +372,11 @@ const thebe_selector_output = ".output, .cell_output"
      Update 2
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cits/update3.html">
+     Update 3
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -341,7 +396,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../envent/projectupdate2.html">
-     Concise Project Refresher
+     Update 2: Moving Towards Megapoll Assembly
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../envent/projectupdate3.html">
+     Update 3: Merging Demographics and Exploring Modeling
     </a>
    </li>
   </ul>
@@ -366,6 +426,11 @@ const thebe_selector_output = ".output, .cell_output"
      Update 2
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../eri/update3.html">
+     Update 3
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -386,6 +451,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../evidation_eric/update2.html">
      Evidation Health Project Update 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../evidation_eric/update3.html">
+     Evidation Health Project Update 3
     </a>
    </li>
   </ul>
@@ -410,6 +480,11 @@ const thebe_selector_output = ".output, .cell_output"
      Evidation Update #2 (Julio’s Team)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../evidation_julio/update3.html">
+     Evidation Julio Update 3
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -424,12 +499,17 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../hg_insights/HG_Update1_Feb7.html">
-     hg_insights
+     Update 1
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../hg_insights/update%202-2.html">
      Update 2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hg_insights/update%203.html">
+     Update 3
     </a>
    </li>
   </ul>
@@ -452,6 +532,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../nri/update2.html">
      Team Information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nri/update3.html">
+     NRI Group Update 3
     </a>
    </li>
   </ul>
@@ -498,97 +583,207 @@ const thebe_selector_output = ".output, .cell_output"
      Update 2
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../sprague/Sprague_group_update_03.html">
+     Update 3
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/projects/pwc/Update_2.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io/issues/new?title=Issue%20on%20page%20%2Fprojects/pwc/Update_2.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io/edit/main/ucsb_ds_capstone_projects_2022/projects/pwc/Update_2.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io/issues/new?title=Issue%20on%20page%20%2Fprojects/pwc/Update_2.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ucsb-ds-capstone-2022/ucsb-ds-capstone-2022.github.io/edit/main/ucsb_ds_capstone_projects_2022/projects/pwc/Update_2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/projects/pwc/Update_2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#benchmark">
    Benchmark
@@ -642,12 +837,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Update 2: First Dive into Compression</h1>
@@ -717,16 +911,17 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="update-2-first-dive-into-compression">
-<h1>Update 2: First Dive into Compression<a class="headerlink" href="#update-2-first-dive-into-compression" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="benchmark">
-<h2>Benchmark<a class="headerlink" href="#benchmark" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="update-2-first-dive-into-compression">
+<h1>Update 2: First Dive into Compression<a class="headerlink" href="#update-2-first-dive-into-compression" title="Permalink to this headline">#</a></h1>
+<section id="benchmark">
+<h2>Benchmark<a class="headerlink" href="#benchmark" title="Permalink to this headline">#</a></h2>
 <p>As briefly covered in the first update, A simple model is more desirable for the initial trials with model compression methods. After some testing with different word embedding models we were able to achieve desirable results. The model is currently using Stanford’s GloVe (Global Vectors for Word Representation)<a class="footnote-reference brackets" href="#id4" id="id1">1</a> for the word embeddings. For the emotion classification we are using a standard Sequential Model<a class="footnote-reference brackets" href="#id5" id="id2">2</a> which is constructed with Adam, Relu/Sigmoid activation, and a dropout layer.</p>
-<div class="section" id="key-metrics">
-<h3>Key Metrics<a class="headerlink" href="#key-metrics" title="Permalink to this headline">¶</a></h3>
+<section id="key-metrics">
+<h3>Key Metrics<a class="headerlink" href="#key-metrics" title="Permalink to this headline">#</a></h3>
 <p>Because of the imbalance in classes, we choose the <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span>  score as our statistic among other metrics to measure the performance which is the usual convention for this type of task.</p>
 <div class="math notranslate nohighlight">
 \[\text{$F1$ Score} =2 \cdot \frac{\text { Precision } \cdot \text { Recall }}{\text { Precision }+\text { Recall }}\]</div>
@@ -734,9 +929,9 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned} \text { Precision } &amp;=\frac{T P}{T P+F P} \\[2.5mm] \text { Recall } &amp;=\frac{T P}{T P+F N} \end{aligned}\end{split}\]</div>
 <p>Precision measures the percentage of true positives from all positive cases detected by the model, while Recall(sensitivity) measures the percentage of positive cases the model detects successfully. Notice that <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span> score reflects both metrics: the <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span> score is high only when both Precision and Recall are high.</p>
-</div>
-<div class="section" id="some-tuning">
-<h3>Some Tuning<a class="headerlink" href="#some-tuning" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="some-tuning">
+<h3>Some Tuning<a class="headerlink" href="#some-tuning" title="Permalink to this headline">#</a></h3>
 <p>We initially had some RAM issues running GloVe for vector representation of words of higher than dimension of 100. Thus testing was done with 50 and 100 and we achieved modest <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span> scores in the high 40’s range. Comparing to the GoEmotion<a class="footnote-reference brackets" href="#id6" id="id3">3</a> paper that achieved a score of 62 for the Ekman style grouping left much to be sought after. Note that our model at this stage was 936KB relative to a standard BERT model which is substantially larger and more robust.</p>
 <hr class="docutils" />
 <p><strong>Note</strong>: We are still fine-tuning the model as we move onto other tasks.</p>
@@ -744,18 +939,18 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Layer selection was chosen manually by running 30 epochs with 5 trials with an average taken across the trials.</p>
 <p><img alt="" src="../../_images/wordvector.png" /></p>
 <p>The figure depicts the “best tradeoff” region and shows additional layers do not provide a more optimal model when we want to maximize <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span>.</p>
-</div>
-</div>
-<div class="section" id="compression">
-<h2>Compression<a class="headerlink" href="#compression" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="compression">
+<h2>Compression<a class="headerlink" href="#compression" title="Permalink to this headline">#</a></h2>
 <p>Moving into the main objective of the project. Our first method is a form of model compression called Quantization.</p>
-<div class="section" id="quantization">
-<h3>Quantization<a class="headerlink" href="#quantization" title="Permalink to this headline">¶</a></h3>
+<section id="quantization">
+<h3>Quantization<a class="headerlink" href="#quantization" title="Permalink to this headline">#</a></h3>
 <p>Quantization from a mathematical standpoint is the process of taking a set of larger floating point numbers and mapping them to a set of smaller ones. A simple example is converting FP32 (floating point 32 bits) to a smaller precision like INT8 (Integer 8 bit) which is commonly known as 8-bit quantization.</p>
 <p>There are two forms of quantization: post-training quantization and quantization aware training. The tradeoff being post-training is easier to implement while the latter in practice provides better model accuracy.</p>
 <p><strong>Note</strong>: We are currently looking at implementing both forms.</p>
-<div class="section" id="symmetric-and-asymmetric">
-<h4>Symmetric and Asymmetric<a class="headerlink" href="#symmetric-and-asymmetric" title="Permalink to this headline">¶</a></h4>
+<section id="symmetric-and-asymmetric">
+<h4>Symmetric and Asymmetric<a class="headerlink" href="#symmetric-and-asymmetric" title="Permalink to this headline">#</a></h4>
 <p>The two most common forms of <em>calibration</em> are Symmetric and Asymmetric.</p>
 <ol class="simple">
 <li><p><strong>Asymmetric</strong> quantization, we map the min/max in the float range to the min/max of the integer range. This is done by using a <strong>zero-point</strong> in addition to the scale factor.</p></li>
@@ -768,10 +963,10 @@ const thebe_selector_output = ".output, .cell_output"
 \[Q(w)=\operatorname{Int}\left(\left(\frac{w}{\beta-\alpha}\right) \cdot(2^{n}-1)\right)+z\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha,\beta\)</span>. are clipping ranges to be chosen, <span class="math notranslate nohighlight">\(\mathrm{z}\)</span> is a zero-point. Choosing
 <span class="math notranslate nohighlight">\(\alpha, \beta\)</span> is what we referred to earlier as <em>calibration</em>.</p>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="percentiles">
-<h4>Percentiles<a class="headerlink" href="#percentiles" title="Permalink to this headline">¶</a></h4>
+<section id="percentiles">
+<h4>Percentiles<a class="headerlink" href="#percentiles" title="Permalink to this headline">#</a></h4>
 <p>The idea with percentiles Is to set the range to a percentile of the distribution of weights seen during calibration. In practice, many pre-built functions that perform quantization only take a look at the maximum and the minimum weights. We hypothesize that with the imbalance in classes there will be outliers in the distribution of weights across the layers.  Thus, the manual function will provide the better tradeoff between robustness and compression.</p>
 <p>–
 <strong>Example</strong>:
@@ -779,19 +974,19 @@ For symmetric quantizations: for 99th percentiles, we can can take
 <span class="math notranslate nohighlight">\(\beta=|w|_{0.99}, \alpha=-\beta\)</span>. For asymmetric quantizations: we can can take
 <span class="math notranslate nohighlight">\(\beta=w_{0.995}, \alpha=w_{0.05}\)</span>
 and implement the same quantization functions. If a weight exceeds a particular upper bound, we replace that weight with the upper bound/ lower bound percentile and transform it accordingly.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 <hr class="docutils" />
-<div class="section" id="week-10-goal">
-<h2>Week 10 goal<a class="headerlink" href="#week-10-goal" title="Permalink to this headline">¶</a></h2>
+<section id="week-10-goal">
+<h2>Week 10 goal<a class="headerlink" href="#week-10-goal" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
 <li><p>Create a Quantization function that considers the distribution of weights across layers and implements quantization accordingly.</p></li>
 <li><p>Analyze the tradeoff between performance and compression of the custom method.</p></li>
 </ol>
-</div>
-<div class="section" id="looking-ahead">
-<h2>Looking Ahead<a class="headerlink" href="#looking-ahead" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="looking-ahead">
+<h2>Looking Ahead<a class="headerlink" href="#looking-ahead" title="Permalink to this headline">#</a></h2>
 <ol class="simple">
 <li><p>At this moment in time we were able to resolve the RAM issue and get the 300 dimension word vectors GloVe model functioning. We are working on optimizing the trial model before running some final tests. We hypothesize that this model will produce the best results.</p></li>
 <li><p>We hope to create our own word embeddings which would give us more access to applying compression methods elsewhere besides the layers of the model.</p></li>
@@ -809,8 +1004,8 @@ and implement the same quantization functions. If a weight exceeds a particular 
 <dd><p><a class="reference external" href="https://arxiv.org/pdf/2005.00547.pdf">https://arxiv.org/pdf/2005.00547.pdf</a></p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -834,9 +1029,11 @@ and implement the same quantization functions. If a weight exceeds a particular 
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="Update_1.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -852,24 +1049,28 @@ and implement the same quantization functions. If a weight exceeds a particular 
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By UCSB DS Capstone Class<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By UCSB DS Capstone Class<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
